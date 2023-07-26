@@ -1,10 +1,11 @@
+// The layers are modified to read weights from three different variables i.e, sign, index and mantissa. 
 #include "LeNet.h"
 #include "stdio.h"
 #include "stdlib.h"
 
 ap_int<8> wExpList [20] = {126, 124, 128, 125, 123, 122, 127, 120, 121, 119, 129, 118, 116, 117, 112, 115, 108, 113, 111, 114};
 
-
+// Read Floats in IEEE format and seggregate sign, exponent and mantissa from that
 union myFloat
 {
 	float f;
@@ -44,6 +45,7 @@ void ConvLayer_1(float input[1024],float * C1_value, ap_int<1> * wSign, ap_int<5
 		//TODO memory kernel
 		float matrix_2[25];
 		for(mat_i = 0;mat_i<25;mat_i++){
+			\\Retrieve the weights
 			temp.raw.sign = wSign[mat_i + k_num*25];
 			temp.raw.exponent = wExpList[wInd[mat_i + k_num*25]];
 			temp.raw.mantissa = wMant[mat_i + k_num*25];
@@ -122,6 +124,7 @@ void ConvLayer_3(float input[1176],float *C3_value,ap_int<1> * wSign, ap_int<5> 
 				for(k_num = 0; k_num < 6; k_num++){
 					float matrix_2[25];
 					for(mat_i = 0;mat_i<25;mat_i++){
+						\\Retrieve the weights
 						int weights_index = mat_i + k_num*25 + (nk_num+1)*150;
 						temp.raw.sign = wSign[weights_index];
 						temp.raw.exponent = wExpList[wInd[weights_index]];
@@ -173,6 +176,7 @@ void FullyConnLayer_5(float input[400],float *F5_value,ap_int<1> * wSign, ap_int
 #pragma HLS pipeline II = 1
 			int index = i_x + i_y * 400;
 			int wt_ind = index + 2550;
+			\\Retrieve the weights
 			temp.raw.sign = wSign[wt_ind];
 			temp.raw.exponent = wExpList[wInd[wt_ind]];
 			temp.raw.mantissa = wMant[wt_ind];
@@ -196,6 +200,7 @@ void FullyConnLayer_6(float input[120],float *F6_value,ap_int<1> * wSign, ap_int
 #pragma HLS pipeline II = 1
 			int index = i_x + i_y * 120;
 			int wt_ind = index + 50550;
+			\\Retrieve the weights
 			temp.raw.sign = wSign[wt_ind];
 			temp.raw.exponent = wExpList[wInd[wt_ind]];
 			temp.raw.mantissa = wMant[wt_ind];
@@ -216,6 +221,7 @@ void FullyConnLayer_7(float input[84],float *F6_value,ap_int<1> * wSign, ap_int<
 #pragma HLS pipeline II = 1
 			int index = i_x + i_y * 84;
 			c++;
+			\\Retrieve the weights
 			temp.raw.sign = wSign[index + 60630];
 			temp.raw.exponent = wExpList[wInd[index + 60630]];
 			temp.raw.mantissa = wMant[index + 60630];
@@ -276,6 +282,7 @@ void LetNet(ap_int<1> signW[62494],ap_int<5> indW[62494], ap_int<23> mantW[62494
 		photo[loop1_i] = (float)t;
 	}
 	//calulation of each layer
+	//Pass sign, index and mantissa to each layer other that passing a float as weight
 	ConvLayer_1(photo,C1_value,signW,indW,mantW);
 	AvgpoolLayer_2(C1_value,A2_value);
 	ConvLayer_3(A2_value,C3_value,signW,indW,mantW);
