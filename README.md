@@ -1,6 +1,6 @@
-# Exponent sharing in LenNet
+# Exponent Sharing in LenNet
 
-LeNet reads the weights stored in the new format proposed in [[1]](#1). The HLS implimentation on LeNet is taken from [here](https://github.com/a2824256/HLS-LeNet). 
+LeNet reads the weights stored in the new format proposed in . The HLS implimentation on LeNet is taken from [here](https://github.com/a2824256/HLS-LeNet). Further it is modified to share exponents as proposed in [[1]](#1). 
 
 
 ## References
