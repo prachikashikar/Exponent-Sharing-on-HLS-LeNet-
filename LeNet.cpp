@@ -3,6 +3,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 
+//Exponent table with distinct values
 ap_int<8> wExpList [20] = {126, 124, 128, 125, 123, 122, 127, 120, 121, 119, 129, 118, 116, 117, 112, 115, 108, 113, 111, 114};
 
 // Read Floats in IEEE format and seggregate sign, exponent and mantissa from that
