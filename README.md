@@ -1,4 +1,4 @@
-# ExpoShare
+# Exponent sharing in LenNet
 
 LeNet reads the weights stored in the new format proposed in [[1]](#1). The HLS implimentation on LeNet is taken from [here](https://github.com/a2824256/HLS-LeNet). 
 
