@@ -24,7 +24,7 @@ int main(){
 		wMantFile >> t;
 		wMant[i_2] = t;
 	}
-
+ // Pass weights as a combination of sign, index and mantissa
 	LetNet(wSign,wInd,wMant,&r);
 	std::cout<<"res:"<<r<<"\n";
 
