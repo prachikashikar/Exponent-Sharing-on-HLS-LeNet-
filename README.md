@@ -1,6 +1,6 @@
 # ExpoShare
 
-LeNet reads the weights stored in the new format proposed in [[1]](#1). The basis of the code can be found [here](https://github.com/a2824256/HLS-LeNet). 
+LeNet reads the weights stored in the new format proposed in [[1]](#1). The HLS implimentation on LeNet is taken from [here](https://github.com/a2824256/HLS-LeNet). 
 
 
 ## References
