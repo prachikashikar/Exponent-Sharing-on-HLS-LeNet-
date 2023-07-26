@@ -283,7 +283,7 @@ void LetNet(ap_int<1> signW[62494],ap_int<5> indW[62494], ap_int<23> mantW[62494
 		photo[loop1_i] = (float)t;
 	}
 	//calulation of each layer
-	//Pass sign, index and mantissa to each layer other that passing a float as weight
+	//Pass sign, index and mantissa to each layer other than passing a float as weight
 	ConvLayer_1(photo,C1_value,signW,indW,mantW);
 	AvgpoolLayer_2(C1_value,A2_value);
 	ConvLayer_3(A2_value,C3_value,signW,indW,mantW);
